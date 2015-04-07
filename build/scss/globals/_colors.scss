@@ -1,0 +1,39 @@
+
+// Colors
+// ///////////////////////////////////////////////////////////////
+
+$color-header-background	:rgba(40, 40, 40, 1);
+$color-header							:rgba(255, 255, 255, 1);
+
+$color-body-background		:rgba(255, 255, 255, 1);
+$color-body								:rgba(0, 0, 0, 1);
+
+$color-link								:rgba(255, 128, 40, 1);
+$color-link-hover					:rgba(128, 255, 40, 1);
+
+$color-placeholder				:rgba(128, 128, 128, 1);
+$color-highlight					:rgba(255, 200, 40, .6);
+
+$color-chart-background		:rgba(128, 128, 128, 0);
+$color-chart-stroke				:rgba(0, 0, 0, 1);
+$color-chart-fill					:rgba(128, 128, 128, 1);
+$color-chart-fill2				:rgba(40, 200, 255, 1);
+$color-chart-fill3				:rgba(255, 40, 200, 1);
+$color-chart-ticks				:rgba(100, 100, 100, 1);
+$color-chart-update				:rgba(0, 200, 200, 1);
+
+$color-nav-overlay				:rgba(160, 255, 40, 1);
+
+$color-map-background			:rgba(245, 245, 245, 1);
+
+// $color-map-green			:rgba(80, 245, 40, 1);
+$color-map-green			:rgba(120, 255, 40, 1);
+$color-map-blue				:rgba(0, 213, 226, 1);
+$color-map-yellow			:rgba(255, 241, 0, 1);
+$color-map-red				:rgba(255, 58, 71, 1);
+$color-map-orange			:rgba(255, 161, 0, 1);
+
+$color-train-circle		:rgba(0, 0, 0, .05);
+
+$color-text						:darken($color-header, 20%);
+$color-background			:rgba(40, 40, 40, 1);

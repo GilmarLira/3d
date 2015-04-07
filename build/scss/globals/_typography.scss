@@ -1,0 +1,127 @@
+
+// Typography
+// ///////////////////////////////////////////////////////////////
+
+@font-face{
+	font-family: 'miso-light';
+	src: url('fonts/miso-light-webfont.eot');
+	src: url('fonts/miso-light-webfont?#iefix') format('embedded-opentype'),
+	     url('fonts/miso-light-webfont.woff') format('woff'),
+	     url('fonts/miso-light-webfont.ttf') format('truetype'),
+	     url('fonts/miso-light-webfont.svg#webfont') format('svg');
+}
+
+@font-face{
+	font-family: 'miso-regular';
+	src: url('fonts/miso-regular-webfont.eot');
+	src: url('fonts/miso-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	     url('fonts/miso-regular-webfont.woff') format('woff'),
+	     url('fonts/miso-regular-webfont.ttf') format('truetype'),
+	     url('fonts/miso-regular-webfont.svg#webfont') format('svg');
+}
+
+
+@font-face{
+	font-family: 'miso-bold';
+	src: url('fonts/miso-bold-webfont.eot');
+	src: url('fonts/miso-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	     url('fonts/miso-bold-webfont.woff') format('woff'),
+	     url('fonts/miso-bold-webfont.ttf') format('truetype'),
+	     url('fonts/miso-bold-webfont.svg#webfont') format('svg');
+}
+
+$font-miso-light: 'miso-light', sans-serif;
+$font-miso-regular: 'miso-regular', sans-serif;
+$font-miso-bold: 'miso-bold', sans-serif;
+
+$font-body-size				: 16px;
+$font-body-line				: 1;
+$scale-factor					: 1.5;
+
+@mixin typeface-miso-light { font-family: $font-miso-light; }
+@mixin typeface-miso-regular { font-family: $font-miso-regular; }
+@mixin typeface-miso-bold { font-family: $font-miso-bold; }
+
+html { @include rhythm(1); }
+
+body {
+  color: $color-text;
+  text-transform: uppercase;
+  @include typeface-miso-regular;
+}
+
+h1,
+.alpha {
+  @include typeface-miso-bold;
+  @include rhythm(5);
+  @include media($medium) { @include rhythm(4); }
+  @include media($small) { @include rhythm(3); }
+}
+
+h2,
+.beta {
+  @include typeface-miso-bold;
+  @include rhythm(6);
+  @include media($medium) { @include rhythm(4); }
+  @include media($small) { @include rhythm(2); }
+}
+
+h3,
+.gamma {
+  @include typeface-miso-bold;
+  @include rhythm(4);
+}
+
+h4,
+.delta {
+  @include typeface-miso-bold;
+  @include rhythm(6);
+  @include media($medium) { @include rhythm(5); }
+  @include media($small) { @include rhythm(4); }
+}
+
+h5,
+.epsilon {
+  @include typeface-miso-regular;
+  @include rhythm(0);
+  @include media($small) { @include rhythm(-1); }
+}
+
+h6,
+.zeta {
+  @include typeface-miso-light;
+  @include rhythm(-1);
+}
+
+p,
+ul,
+ol {
+  @include rhythm(1, 0, 1);
+  // @include media($medium) { @include rhythm(.5); }
+  @include media($small) { @include rhythm(1); }
+}
+
+//
+$font-title-family		: 'miso-bold';
+$font-header-family		: 'miso-light';
+$font-subheader-family: 'miso-light';
+$font-body-family 		: 'miso-regular';
+
+$font-title-size			:4.6875rem;
+$font-header-size			:2.875rem;
+$font-subheader-size	:1.5rem;
+$font-small-size			:.5rem;
+$font-caption-size		:.44rem;
+
+$font-title-line			:1;
+$font-header-line			:1;
+$font-subheader-line	:1;
+$font-small-line			:2;
+$font-caption-line		:1.71;
+//
+$font-title				:4.6875rem/1 miso-bold, sans-serif;
+$font-header			:2.875rem/1 miso-light, sans-serif;
+$font-subheader		:1.5rem/1 miso-bold, sans-serif;
+$font-body 				:1rem/1 miso-light, sans-serif;
+$font-small				:.75rem/1 miso-regular, sans-serif;
+$font-caption			:.4375rem/1.71 miso-regular, sans-serif;

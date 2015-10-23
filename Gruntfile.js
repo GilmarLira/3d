@@ -5,39 +5,39 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     concat: {
-        dist: {
-            src: 'build/js/scripts/*.js',
-            dest: 'build/js/script.js'
-        },
-  			push: {
-            src: 'build/js/script.js',
-    				dest: 'www/js/script.js',
-  			}
+      dist: {
+          src: 'build/js/scripts/*.js',
+          dest: 'build/js/script.js'
+      },
+			push: {
+          src: 'build/js/script.js',
+  				dest: 'www/js/script.js',
+			}
     },
-    // uglify: {
-    //   my_target: {
-    //     files: {
-    //       'www/js/script.min.js': 'build/js/interactions.js'
-    //     }
-    //   }
-    // },
 
     sass: {
       dist: {
-        options: {
-          style: 'compressed'
-        },
-        files: {
-          'www/css/style.css': 'build/scss/style.scss'
-        }
+        options: { style: 'compressed' },
+        files: { '.tmp/style.css': 'build/scss/style.scss' }
+      }
+    },
+
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer')(),
+          require('lost')
+        ]
+      },
+      dist: {
+        src: '.tmp/style.css',
+        dest: 'www/css/style.css'
       }
     },
 
     watch: {
       frontend: {
-        options: {
-          livereload: true,
-        },
+        options: { livereload: true, },
         files: [
           'www/css/*.css',
           'www/js/*.js',
@@ -46,9 +46,6 @@ module.exports = function(grunt) {
       },
 
       sass: {
-        options: {
-          livereload: false
-        },
         files: [
           'build/scss/globals/*.scss',
           'build/scss/partials/*.scss',
@@ -56,13 +53,13 @@ module.exports = function(grunt) {
         tasks: 'sass'
       },
 
+      css: {
+        files: ['.tmp/*.css'],
+        tasks: 'postcss'
+      },
+
       js: {
-        options: {
-          livereload: false
-        },
-        files: [
-          'build/js/scripts/*.js'
-        ],
+        files: [ 'build/js/scripts/*.js' ],
         tasks: 'concat'
       }
     }
@@ -72,10 +69,10 @@ module.exports = function(grunt) {
   // 2. Where we tell Grunt we plan to use these plug-ins
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-
+  grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-postcss');
 
   // 3. Where we tell Grunt what to do when we type "grunt" into the terminal.
-  grunt.registerTask('default', ['sass', 'concat', 'watch']);
+  grunt.registerTask('default', ['sass', 'postcss', 'concat', 'watch']);
 
 };

@@ -63,143 +63,6 @@ html {
    // inspired by www.gridlover.net
 
    ========================================================================== */
-@font-face {
-  font-family: 'miso-light';
-  src: url("fonts/miso-light-webfont.eot");
-  src: url("fonts/miso-light-webfont?#iefix") format("embedded-opentype"), url("fonts/miso-light-webfont.woff") format("woff"), url("fonts/miso-light-webfont.ttf") format("truetype"), url("fonts/miso-light-webfont.svg#webfont") format("svg"); }
-
-@font-face {
-  font-family: 'miso-regular';
-  src: url("fonts/miso-regular-webfont.eot");
-  src: url("fonts/miso-regular-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/miso-regular-webfont.woff") format("woff"), url("fonts/miso-regular-webfont.ttf") format("truetype"), url("fonts/miso-regular-webfont.svg#webfont") format("svg"); }
-
-@font-face {
-  font-family: 'miso-bold';
-  src: url("fonts/miso-bold-webfont.eot");
-  src: url("fonts/miso-bold-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/miso-bold-webfont.woff") format("woff"), url("fonts/miso-bold-webfont.ttf") format("truetype"), url("fonts/miso-bold-webfont.svg#webfont") format("svg"); }
-
-html {
-  font-size: 24px;
-  line-height: 32px;
-  margin-top: 0px;
-  margin-bottom: 0px; }
-
-body {
-  color: #cccccc;
-  text-transform: uppercase;
-  font-family: "miso-regular", sans-serif; }
-
-h1,
-.alpha {
-  font-family: "miso-bold", sans-serif;
-  font-size: 122px;
-  line-height: 128px;
-  margin-top: 0px;
-  margin-bottom: 0px; }
-  @media screen and (min-width: 481px) and (max-width: 1024px) {
-    h1,
-    .alpha {
-      font-size: 81px;
-      line-height: 96px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-  @media screen and (min-width: 320px) and (max-width: 480px) {
-    h1,
-    .alpha {
-      font-size: 54px;
-      line-height: 64px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-
-h2,
-.beta {
-  font-family: "miso-bold", sans-serif;
-  font-size: 182px;
-  line-height: 192px;
-  margin-top: 0px;
-  margin-bottom: 0px; }
-  @media screen and (min-width: 481px) and (max-width: 1024px) {
-    h2,
-    .beta {
-      font-size: 81px;
-      line-height: 96px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-  @media screen and (min-width: 320px) and (max-width: 480px) {
-    h2,
-    .beta {
-      font-size: 36px;
-      line-height: 48px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-
-h3,
-.gamma {
-  font-family: "miso-bold", sans-serif;
-  font-size: 81px;
-  line-height: 96px;
-  margin-top: 0px;
-  margin-bottom: 0px; }
-
-h4,
-.delta {
-  font-family: "miso-bold", sans-serif;
-  font-size: 182px;
-  line-height: 192px;
-  margin-top: 0px;
-  margin-bottom: 0px; }
-  @media screen and (min-width: 481px) and (max-width: 1024px) {
-    h4,
-    .delta {
-      font-size: 122px;
-      line-height: 128px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-  @media screen and (min-width: 320px) and (max-width: 480px) {
-    h4,
-    .delta {
-      font-size: 81px;
-      line-height: 96px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-
-h5,
-.epsilon {
-  font-family: "miso-regular", sans-serif;
-  font-size: 16px;
-  line-height: 16px; }
-  @media screen and (min-width: 320px) and (max-width: 480px) {
-    h5,
-    .epsilon {
-      font-size: 11px;
-      line-height: 16px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-
-h6,
-.zeta {
-  font-family: "miso-light", sans-serif;
-  font-size: 11px;
-  line-height: 16px;
-  margin-top: 0px;
-  margin-bottom: 0px; }
-
-p,
-ul,
-ol {
-  font-size: 24px;
-  line-height: 32px;
-  margin-top: 0px;
-  margin-bottom: 16px; }
-  @media screen and (min-width: 320px) and (max-width: 480px) {
-    p,
-    ul,
-    ol {
-      font-size: 24px;
-      line-height: 32px;
-      margin-top: 0px;
-      margin-bottom: 0px; } }
-
 @-webkit-keyframes flicker-in {
   0% {
     opacity: 0;
@@ -925,20 +788,13 @@ ol {
   100% {
     background-color: transparent; } }
 
-.cf:before, .cf:after {
-  content: '';
-  display: table; }
-
-.cf:after {
-  clear: both; }
-
 html {
   height: 100%; }
 
 body {
-  background-color: #222;
   height: 100%;
   tap-highlight-color: transparent;
+  transition: transform 1s ease-out;
   width: 100%; }
 
 .container {
@@ -950,96 +806,95 @@ body {
   width: 100%; }
 
 .wall {
-  height: 100%;
-  width: 100%;
-  left: 0;
+  pointer-events: none;
   position: absolute;
-  top: 0;
-  transform-style: preserve-3d; }
+  transform-style: preserve-3d;
+  z-index: 1; }
   .wall.back {
     height: 100%;
-    transform: translateZ(-50vw);
-    width: 100%; }
-    .wall.back .top {
-      height: 10%;
-      transform: rotateX(-90deg);
-      transform-origin: 50% 0%; }
-    .wall.back .bottom {
-      height: 10%;
-      bottom: 0;
-      transform: rotateX(90deg);
-      transform-origin: 50% 100%; }
-    .wall.back .left {
-      height: 100%;
-      transform: rotateY(90deg);
-      transform-origin: 0% 50%;
-      width: 2.5vh; }
-    .wall.back .right {
-      height: 100%;
-      right: 0;
-      transform: rotateY(-90deg);
-      transform-origin: 100% 50%;
-      width: 2.5vh; }
-  .wall.top {
-    height: 50vw;
-    top: -50vw;
-    transform: rotateX(90deg);
-    transform-origin: 50% 100%;
-    width: 100%; }
-    .wall.top .top {
-      height: 100%;
-      top: 0;
-      transform: rotateX(90deg);
-      transform-origin: 50% 0%; }
-    .wall.top .bottom {
-      height: 10%;
-      bottom: 0;
-      transform: rotateX(90deg);
-      transform-origin: 50% 100%; }
-    .wall.top .left {
-      height: 100%;
-      transform: rotateY(90deg);
-      transform-origin: 0% 50%;
-      width: 2.5vh; }
-    .wall.top .right {
-      height: 100%;
-      right: 0;
-      transform: rotateY(-90deg);
-      transform-origin: 100% 50%;
-      width: 2.5vh; }
+    width: 100%;
+    transform: translateZ(calc(-50vw - 1.25vh)); }
+  .wall.top,
   .wall.bottom {
     height: 50vw;
-    top: calc(100vh - 50vw);
+    width: 100%; }
+  .wall.top {
+    top: -1.25vh;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0%; }
+  .wall.bottom {
+    bottom: -1.25vh;
     transform: rotateX(90deg);
-    transform-origin: 0% 100%;
-    width: 100vw; }
-  .wall.left {
-    left: -50vw;
-    height: 100%;
-    transform: rotateY(-90deg);
-    transform-origin: 100% 50%;
-    width: 50%; }
+    transform-origin: 50% 100%; }
+  .wall.left,
   .wall.right {
-    left: 50%;
     height: 100%;
-    transform: rotateY(-90deg);
-    transform-origin: 100% 50%;
     width: 50%; }
+  .wall.left {
+    left: -1.25vh;
+    transform: rotateY(90deg);
+    transform-origin: 0% 50%; }
+  .wall.right {
+    right: -1.25vh;
+    transform: rotateY(-90deg);
+    transform-origin: 100% 50%; }
 
 .box {
-  background-color: rgba(0, 255, 251, 0.1);
   float: left;
-  lost-waffle: 1/4;
+  lost-waffle: 0.25 4 2.5vh;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.5s ease-out, background-color 300ms ease-out; }
+  .box:hover:not(.selected) {
+    transform: translateZ(50px); }
+  .box:hover .side {
+    background-color: rgba(255, 165, 0, 0.6); }
+  .top .box.selected,
+  .bottom .box.selected {
+    transform: translateZ(50vh); }
+  .left .box.selected,
+  .right .box.selected {
+    transform: translateZ(calc(50vw)); }
+  .back .box.selected {
+    transform: translateZ(calc(50vw + 1.25vh)); }
 
 .side {
-  background-color: rgba(0, 255, 251, 0.1);
+  background-color: rgba(0, 174, 230, 0.15);
+  pointer-events: all;
   position: absolute;
-  transform-origin: 0% 100%;
   transition: background-color 300ms ease-out;
   width: 100%; }
-
-.sideActive, .sideSelected {
-  background-color: rgba(255, 150, 0, 0.6); }
+  .selected .side {
+    background-color: rgba(255, 165, 0, 0.6); }
+  .selected:hover .side {
+    background-color: rgba(255, 207, 0, 0.6); }
+  .side.front,
+  .side.left,
+  .side.right {
+    height: 100%; }
+  .side.top {
+    height: 200px;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0%; }
+    .back .side.top {
+      height: 100px; }
+  .side.bottom {
+    bottom: 0;
+    height: 200px;
+    transform: rotateX(90deg);
+    transform-origin: 50% 100%; }
+    .back .side.bottom {
+      height: 100px; }
+  .side.left {
+    transform: rotateY(90deg);
+    transform-origin: 0% 50%;
+    width: 200px; }
+    .back .side.left {
+      width: 100px; }
+  .side.right {
+    right: 0;
+    transform: rotateY(-90deg);
+    transform-origin: 100% 50%;
+    width: 200px; }
+    .back .side.right {
+      width: 100px; }

@@ -4,16 +4,27 @@
 
 // * { @include outline(#ccc); }
 
-.cf:before, .cf:after { content: ''; display: table; }
-.cf:after { clear: both; }
+// .cf:before, .cf:after { content: ''; display: table; }
+// .cf:after { clear: both; }
+
+$box-per-row: 4;
+$box-side: 200px;
+$box-color: rgba(0, 174, 230, .15);
+$box-active: rgba(#ffa500, .6);
+$box-hover: $box-active;
+$box-active-hover: rgba(#ffcf00, 0.6);
+
+$gutter: 2.5vh;
 
 html { height: 100%; }
 
 body {
-  background-color: #222;
+  // background-color: #222;
   height: 100%;
   tap-highlight-color: transparent;
+  transition: transform 1s ease-out;
   width: 100%;
+
 }
 
 .container {
@@ -27,201 +38,133 @@ body {
 
 
 .wall {
-  height: 100%;
-  width: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  transform-style: preserve-3d;
-  // overflow: hidden;
   // outline: 1px solid gray;
+  pointer-events: none;
+  position: absolute;
+  transform-style: preserve-3d;
+  z-index: 1;
 
   &.back {
-    height: 100%;
-    transform: translateZ(-50vw);
+    @include size(100%);
+    transform: translateZ(calc(-50vw - #{ $gutter / 2 }));
+  }
+
+  &.top,
+  &.bottom {
+    height: 50vw;
     width: 100%;
-
-    .top {
-      height: 10%;
-      transform: rotateX(-90deg);
-      transform-origin: 50% 0%;
-    }
-
-    .bottom {
-      height: 10%;
-      bottom: 0;
-      transform: rotateX(90deg);
-      transform-origin: 50% 100%;
-    }
-
-    .left {
-      height: 100%;
-      transform: rotateY(90deg);
-      transform-origin: 0% 50%;
-      width: 2.5vh; // WHY?
-    }
-
-    .right {
-      height: 100%;
-      right: 0;
-      transform: rotateY(-90deg);
-      transform-origin: 100% 50%;
-      width: 2.5vh; // WHY?
-    }
   }
 
   &.top {
-    height: 50vw;
-    top: -50vw;
-    transform: rotateX(90deg);
-    transform-origin: 50% 100%;
-    width: 100%;
-
-    .top {
-      height: 100%; //
-      top: 0;
-      transform: rotateX(90deg); //
-      transform-origin: 50% 0%;
-    }
-
-    .bottom {
-      height: 10%;
-      bottom: 0;
-      transform: rotateX(90deg);
-      transform-origin: 50% 100%;
-    }
-
-    .left {
-      height: 100%;
-      transform: rotateY(90deg);
-      transform-origin: 0% 50%;
-      width: 2.5vh; // WHY?
-    }
-
-    .right {
-      height: 100%;
-      right: 0;
-      transform: rotateY(-90deg);
-      transform-origin: 100% 50%;
-      width: 2.5vh; // WHY?
-    }
+    top: -$gutter / 2;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0%;
   }
 
   &.bottom {
-    height: 50vw;
-    top: calc(100vh - 50vw);
+    bottom: -$gutter / 2;
     transform: rotateX(90deg);
-    transform-origin: 0% 100%;
-    width: 100vw;
+    transform-origin: 50% 100%;
   }
 
+  &.left,
+  &.right {
+    height: 100%;
+    width: 50%;
+  }
 
   &.left {
-    left: -50vw;
-    height: 100%;
-    transform: rotateY(-90deg);
-    transform-origin: 100% 50%;
-    width: 50%;
+    left: -$gutter / 2;
+    transform: rotateY(90deg);
+    transform-origin: 0% 50%;
   }
 
   &.right {
-    left: 50%;
-    height: 100%;
+    right: -$gutter / 2;
     transform: rotateY(-90deg);
     transform-origin: 100% 50%;
-    width: 50%;
   }
 }
 
+
 .box {
-  background-color: rgba(0, 255, 251, .1);
   float: left;
-  lost-waffle: 1/4;
+  lost-waffle: 1 / $box-per-row $box-per-row $gutter;
   position: relative;
   transform-style: preserve-3d;
   transition: transform .5s ease-out, background-color 300ms ease-out;
+
+  &:hover {
+    &:not(.selected) { transform: translateZ(50px); }
+    .side { background-color: $box-hover; }
+  }
+
+  &.selected {
+    .top &,
+    .bottom & { transform: translateZ(50vh); } // 30px is the default Lost grid gutter
+
+    .left &,
+    .right & { transform: translateZ(calc(50vw)); } // 30px is the default Lost grid gutter
+
+    .back & { transform: translateZ(calc(50vw + #{ $gutter / 2 })); }
+  }
 }
+
 
 .side {
-  background-color: rgba(0, 255, 251, .1);
+  background-color: $box-color;
+  pointer-events: all;
   position: absolute;
-  transform-origin: 0% 100%;
   transition: background-color 300ms ease-out;
   width: 100%;
+
+  .selected & { background-color: $box-active; }
+  .selected:hover & { background-color: $box-active-hover; }
+
+  &.front,
+  &.left,
+  &.right {
+    height: 100%;
+  }
+
+  &.top {
+    height: $box-side;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0%;
+
+    .back & { height: $box-side / 2; }
+  }
+
+  &.bottom {
+    bottom: 0;
+    height: $box-side;
+    transform: rotateX(90deg);
+    transform-origin: 50% 100%;
+
+    .back & { height: $box-side / 2; }
+
+  }
+
+  &.left {
+    transform: rotateY(90deg);
+    transform-origin: 0% 50%;
+    width: $box-side;
+
+    .back & { width: $box-side / 2; }
+
+  }
+
+  &.right {
+    right: 0;
+    transform: rotateY(-90deg);
+    transform-origin: 100% 50%;
+    width: $box-side;
+
+    .back & { width: $box-side / 2; }
+
+  }
 }
 
-.sideActive, .sideSelected { background-color: rgba(255, 150, 0, .6); }
 
 
-// .wall.right .side.left,
-// .wall.right .side.right,
-// .wall.left .side.left,
-// .wall.left .side.right,
-// .wall.back .side.left,
-// .wall.back .side.right {
-//   height: 100%;
-//   width: 100%;
-// }
-//
-//
-// .wall.top .side,
-// .wall.bottom .side {
-//   height: 100%;
-// }
-//
-//
-// .active,
-// .selected { background-color: rgba(255, 150, 0, .6); }
-//
-// .wall.back .side.top,
-// .wall.right .side.top,
-// .wall.bottom .side.top {
-//   top: -100%;
-//   transform: rotateX(90deg);
-// }
-//
-// .wall.back .side.right,
-// .wall.right .side.right,
-// .wall.bottom .side.right {
-//   bottom: 0;
-//   left: 100%;
-//   transform: rotateY(90deg);
-// }
-//
-// .wall.back .side.bottom,
-// .wall.right .side.bottom,
-// .wall.bottom .side.bottom {
-//   bottom: 0;
-//   transform: rotateX(90deg);
-// }
-//
-// .wall.back .side.left,
-// .wall.right .side.left,
-// .wall.bottom .side.left {
-//   transform: rotateY(90deg);
-// }
-//
-//
-// .wall.top .side.top,
-// .wall.left .side.top {
-//   top: -100%;
-//   transform: rotateX(-90deg);
-// }
-//
-// .wall.top .side.right,
-// .wall.left .side.right {
-//   left: 100%;
-//   transform: rotateY(-90deg);
-// }
-//
-// .wall.top .side.bottom,
-// .wall.left .side.bottom {
-//   bottom: 0;
-//   transform: rotateX(-90deg);
-// }
-//
-// .wall.top .side.left,
-// .wall.left .side.left {
-//   bottom: 0;
-//   transform: rotateY(-90deg);
-// }
+// .sideActive, .sideSelected { background-color: rgba(255, 150, 0, .6); }
